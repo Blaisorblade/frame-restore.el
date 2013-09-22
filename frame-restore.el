@@ -117,7 +117,7 @@ Return t, if the parameters were saved, or nil otherwise."
           (->> (frame-parameters)
             (--filter (memq (car it) frame-restore-parameters))
             prin1-to-string
-            (f-write frame-restore-parameters-file)))
+            ((lambda (content) (f-write content 'utf-8 frame-restore-parameters-file)))))
         t)
     (file-error nil)))
 
